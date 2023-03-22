@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Viikko9</string>
+    <string name="Kuva_1">Kuva 1</string>
+    <string name="Kuva_2">Kuva 2</string>
+    <string name="menu">dropDownMenu</string>
+    <string-array name="images">
+        <item>Kuva1</item>
+        <item>Kuva2</item>
+    </string-array>
+</resources>
