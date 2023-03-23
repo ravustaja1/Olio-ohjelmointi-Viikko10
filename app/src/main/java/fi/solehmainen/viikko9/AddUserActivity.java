@@ -28,10 +28,14 @@ public class AddUserActivity extends AppCompatActivity {
 
     private View degreeType;
 
+    private ImageView previewImg;
+
+    private int image;
+
 
     private String degree;
 
-    //private ImageView ivSelectionImg;
+    private ImageView ivSelectionImg;
 
 
     @Override
@@ -45,12 +49,37 @@ public class AddUserActivity extends AppCompatActivity {
         degreeType = findViewById(R.id.rgDegreeType);
         spinner = findViewById(R.id.spinner);
         //ivSelectionImg = findViewById(R.id.ivSelectionImg);
-
-
+        previewImg = findViewById(R.id.ivPreviewImg);
+        ivSelectionImg = findViewById(R.id.ivPreviewImg);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.images, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
+
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                if (spinner.getSelectedItemPosition() == 0){
+                    //image = R.drawable.baseline_bluetooth_drive_24;
+                    previewImg.setImageResource(image = R.drawable.baseline_bluetooth_drive_24);
+                }
+
+                if (spinner.getSelectedItemPosition() == 1){
+                    previewImg.setImageResource(image = R.drawable.ic_android_black_24dp);
+                    //image = R.drawable.ic_android_black_24dp;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                image = R.drawable.baseline_bluetooth_drive_24;
+            }
+
+        });
 
         //private ImageView ivSelectionImg;
 
