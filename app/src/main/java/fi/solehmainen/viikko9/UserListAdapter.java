@@ -7,12 +7,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
     private Context context;
     private ArrayList<User> users = new ArrayList<>();
-
+    private ArrayList<User> users2 = UserStorage.getInstance().getUsers();
 
     public UserListAdapter(Context context, ArrayList<User> users) {
         this.context = context;
@@ -28,11 +29,26 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+        //ArrayList<String> strings = new ArrayList<>();
+        //ArrayList<User> users = new ArrayList<>();
+
         holder.userFName.setText(users.get(position).getFirstName());
         holder.userLName.setText(users.get(position).getLastName());
         holder.email.setText(users.get(position).getEmail());
         holder.degree.setText(users.get(position).getDegreeProgram());
         holder.userImage.setImageResource(users.get(position).getImage());
+        //holder.degrees.setText(users.get(position).getDegrees());
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Testi");
+        System.out.println(sb.toString());
+        int i=0;
+        for(i=0;i<users2.get(i).getDegrees().size();i++) {
+            sb.append(users2.get(i).getDegrees().get(i) + "\n");
+
+        }
+        holder.degrees.setText(sb.toString());
+        System.out.println(sb.toString());
 
     }
 

@@ -12,6 +12,8 @@
         android:id="@+id/ivUserImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
@@ -50,6 +52,18 @@
             android:layout_height="wrap_content"
             android:text="Degree"
             android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txtDegrees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Suoritetut tutkinnot:" />
+
+        <TextView
+            android:id="@+id/txtSuoritetut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

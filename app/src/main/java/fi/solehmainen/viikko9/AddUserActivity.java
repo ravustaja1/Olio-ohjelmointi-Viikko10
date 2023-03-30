@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
@@ -15,6 +16,7 @@ import android.widget.Spinner;
 
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class AddUserActivity extends AppCompatActivity {
@@ -29,9 +31,10 @@ public class AddUserActivity extends AppCompatActivity {
     private View degreeType;
 
     private ImageView previewImg;
+    private CheckBox cbKandi, cbDi, cbTt, cbUima;
 
     private int image;
-
+    ArrayList<User> users = new ArrayList<>();
 
     private String degree;
 
@@ -50,7 +53,12 @@ public class AddUserActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         //ivSelectionImg = findViewById(R.id.ivSelectionImg);
         previewImg = findViewById(R.id.ivPreviewImg);
-        ivSelectionImg = findViewById(R.id.ivPreviewImg);
+        //ivSelectionImg = findViewById(R.id.ivPreviewImg);
+        cbKandi = findViewById(R.id.cbKandi);
+        cbTt = findViewById(R.id.cbTt);
+        cbDi = findViewById(R.id.cbDi);
+        cbUima = findViewById(R.id.cbUima);
+
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.images, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -89,6 +97,7 @@ public class AddUserActivity extends AppCompatActivity {
 
     public void addUser(View view) {
         RadioGroup rgDegreeType = findViewById(R.id.rgDegreeType);
+        ArrayList<String> degrees = new ArrayList<>();
 
         switch(rgDegreeType.getCheckedRadioButtonId()) {
             case R.id.rbTietotekniikka:
@@ -110,11 +119,28 @@ public class AddUserActivity extends AppCompatActivity {
         }
         int choice = spinner.getSelectedItemPosition();
         //if (choice == 1)
+        if (cbKandi.isActivated()) {
+            degrees.add("Kandidaatin tutkinto");
+        }
+        if (cbDi.isActivated()) {
+            degrees.add("Diplomi-insinöörin tutkinto");
+        }
+        if (cbTt.isActivated()) {
+            degrees.add("Tekniikan tohtorin tutkinto");
+        }
+        if (cbUima.isActivated()) {
+            degrees.add("Uimamaisteri");
+        }
 
-        User user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), degree, choice);
+
+        User user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), degree, choice, degrees);
         UserStorage.getInstance().addUser(user);
 
-        //System.out.println(user.getFirstName() + " " + user.getLastName().toString() + " " + user.getEmail().toString() + " " + user.getDegreeProgram().toString());
+
+        // Tallennetaan users muuttujaan käyttäjät, jonka jälkeen suoritetaan tallennus tiedostoon.
+        users = UserStorage.getInstance().getUsers();
+        UserStorage.getInstance().saveUsers(this);
+
     }
 
 
