@@ -119,19 +119,20 @@ public class AddUserActivity extends AppCompatActivity {
         }
         int choice = spinner.getSelectedItemPosition();
         //if (choice == 1)
-        if (cbKandi.isActivated()) {
+        if (cbKandi.isChecked()) {
             degrees.add("Kandidaatin tutkinto");
         }
-        if (cbDi.isActivated()) {
+        if (cbDi.isChecked()) {
             degrees.add("Diplomi-insinöörin tutkinto");
         }
-        if (cbTt.isActivated()) {
+        if (cbTt.isChecked()) {
             degrees.add("Tekniikan tohtorin tutkinto");
         }
-        if (cbUima.isActivated()) {
+        if (cbUima.isChecked()) {
             degrees.add("Uimamaisteri");
         }
 
+        //System.out.println(degrees);
 
         User user = new User(firstName.getText().toString(), lastName.getText().toString(), email.getText().toString(), degree, choice, degrees);
         UserStorage.getInstance().addUser(user);

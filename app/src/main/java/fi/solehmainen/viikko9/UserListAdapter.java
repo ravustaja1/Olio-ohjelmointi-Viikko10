@@ -40,15 +40,15 @@ public class UserListAdapter extends RecyclerView.Adapter<UserViewHolder> {
         //holder.degrees.setText(users.get(position).getDegrees());
 
         StringBuilder sb = new StringBuilder();
-        sb.append("Testi");
+        //sb.append("Testi");
         System.out.println(sb.toString());
         int i=0;
-        for(i=0;i<users2.get(i).getDegrees().size();i++) {
-            sb.append(users2.get(i).getDegrees().get(i) + "\n");
+        for(i=0;i<users.get(position).getDegrees().size();i++) {
+            sb.append(users.get(position).getDegrees().get(i) + "\n");
 
         }
         holder.degrees.setText(sb.toString());
-        System.out.println(sb.toString());
+        //System.out.println(sb.toString());
 
     }
 
